@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lib/bootstrap5/css/bootstrap.min.css">
+    <link href="./css/main.css" rel="stylesheet">
+    </link>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Menu -->
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Кавминкурортресурсы</a>
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Выход</a>
+          </li>
+        </ul>
+    </header>
+    <!-- End Menu -->
+    <!-- App -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">
+                    <span data-feather="home"></span>
+                    Live-режим
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="shopping-cart"></span>
+                    Графики
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="users"></span>
+                    Отчёты
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                      <span data-feather="users"></span>
+                      Метеоданные
+                    </a>
+                  </li>
+              </ul>
+      
+              <h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+                <span>Управление</span>
+              </h6>
+              <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Ессентукское ММВ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Пятигорское ММВ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="KKMV.html">
+                    <span data-feather="file-text"></span>
+                    Кисловодское ММВ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Железноводское ММВ
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Sidebar -->
+          <!-- Main -->
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1>График</h1>
+              <div class="input-group ms-5">
+                <span class="input-group-text" id="basic-addon1">Начало</span>
+                <input type="date" class="form-control" aria-describedby="basic-addon1" id="start">
+              </div>
+              <div class="input-group ms-5">
+                <span class="input-group-text" id="basic-addon2">Конец</span>
+                <input type="date" class="form-control" aria-describedby="basic-addon2" id="end">
+              </div>
+              <select class="form-select ms-5" aria-label="boreholes-select">
+                <option selected>Выбрать скважину</option>
+                <option value="1">скважина 36</option>
+                <option value="2">скважина 38</option>
+                <option value="3">скважина 2-ПЭ</option>
+              </select>
+            </div>
+            <!-- Charts Canvas -->
+            <canvas class="my-4 w-100" id="tempChart" width="900" height="380"></canvas>
+            <canvas class="my-4 w-100" id="levelChart" width="900" height="380"></canvas>
+            <!-- End Charts Canvas -->
+          </main>
+          <!-- End Main -->
+        </div>
+    </div>
+    <!-- End App -->
+    <script src="./lib/bootstrap5/js/bootstrap.bundle.min.js"></script>
+    <script src="./lib/charts-js/Chart.bundle.min.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
