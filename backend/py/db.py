@@ -47,6 +47,7 @@ def insert_in(conn: any, tbl_name: str, _well_id: int, _value: float) -> bool:
 
 # Получить список скважин
 def fetch_wells(conn: any) -> Iterable:
+    j_obj = {}
     cursor = conn.cursor()
 
     cursor.execute(sql.SQL(FETCH_WELLS))
@@ -54,4 +55,9 @@ def fetch_wells(conn: any) -> Iterable:
     result = cursor.fetchall()
     cursor.close()
 
-    return result
+    for idx, item in enumerate(result):
+        updates = dict([("name", item[0]), ("deposit_name", item[1])])
+        j_obj.update({idx: updates})
+        del updates
+
+    return j_obj
