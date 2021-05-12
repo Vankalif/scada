@@ -56,8 +56,11 @@ def fetch_wells(conn: any) -> Iterable:
     cursor.close()
 
     for idx, item in enumerate(result):
-        updates = dict([("name", item[0]), ("deposit_name", item[1])])
+        updates = dict([("well_name", item[0]), ("well_id", item[1]), ("deposit_name", item[2])])
         j_obj.update({idx: updates})
         del updates
 
     return j_obj
+
+# TODO: добавить функцию получения имени скважины, давления,
+#   температуры и уровня.

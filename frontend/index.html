@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./lib/bootstrap5/css/bootstrap.min.css">
     <link href="./css/main.css" rel="stylesheet">
+    <script src="./lib/vue/vue.global.js"></script>
     </link>
     <title>Real-time</title>
 </head>
@@ -92,9 +93,16 @@
               <h1>Наблюдение</h1>
             </div>
             <!-- Sensors -->
-            <div class="row d-flex justify-content-between">
-                <div class="col-lg-3 sensor">
-                    <h6 class="sensor-heading">скважина 36</h6>
+            <div id="app" class="row d-flex justify-content-between">
+                <div
+                  v-for="(well, idx) in wells"
+                  v-bind:key="idx"
+                  class="col-lg-3 sensor"
+                >
+                  <h6 class="px-3 mt-1 mb-1">
+                    <span>{{ well.deposit_name }}</span>
+                  </h6>  
+                  <h6 class="sensor-heading mb-1">{{ well.well_name }}</h6>
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
                             <b>Давление</b>
@@ -119,85 +127,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-3 sensor">
-                    <h6 class="sensor-heading">скважина 37</h6>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Давление</b>
-                            <div class="value">
-                                <b>3</b>
-                                <b>атм.</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Тепература</b>
-                            <div class="value">
-                                <b>52</b>
-                                <b>&#8451;</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Уровень</b>
-                            <div class="value">
-                                <b>0</b>
-                                <b>М</b> 
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 sensor">
-                    <h6 class="sensor-heading">скважина 57</h6>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Давление</b>
-                            <div class="value">
-                                <b>1</b>
-                                <b>атм.</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Тепература</b>
-                            <div class="value">
-                                <b>41</b>
-                                <b>&#8451;</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Уровень</b>
-                            <div class="value">
-                                <b>7.2</b>
-                                <b>М</b> 
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 sensor">
-                    <h6 class="sensor-heading">скважина 24</h6>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Давление</b>
-                            <div class="value">
-                                <b>1</b>
-                                <b>атм.</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Тепература</b>
-                            <div class="value">
-                                <b>21</b>
-                                <b>&#8451;</b> 
-                            </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
-                            <b>Уровень</b>
-                            <div class="value">
-                                <b>25</b>
-                                <b>М</b> 
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                
             <!-- End Sensors -->
           </main>
           <!-- End Main -->
@@ -206,7 +136,6 @@
     <!-- End App -->
     <script src="./lib/bootstrap5/js/bootstrap.bundle.min.js"></script>
     <script src="./lib/charts-js/Chart.bundle.min.js"></script>
-    <script src="./lib/vue/vue.global.js"></script>
     <script src="./js/index.js"></script>
 </body>
 

@@ -4,5 +4,5 @@ FETCH_LAST = 'select well.name, "value", "timestamp" from {table} ' \
 
 INSERT_IN = 'insert into {table} VALUES (%s, %s);'
 
-FETCH_WELLS = 'SELECT well."name", deposit."name" FROM well ' \
+FETCH_WELLS = 'SELECT well."name", well.id, deposit."name" FROM well ' \
               'LEFT JOIN deposit ON deposit.id = well.deposit_id;'
