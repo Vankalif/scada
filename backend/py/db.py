@@ -61,6 +61,3 @@ def fetch_wells(conn: any) -> Iterable:
         del updates
 
     return j_obj
-
-# TODO: добавить функцию получения имени скважины, давления,
-#   температуры и уровня.

@@ -95,33 +95,33 @@
             <!-- Sensors -->
             <div id="app" class="row d-flex justify-content-between">
                 <div
-                  v-for="(well, idx) in wells"
+                  v-for="(item, idx) in wells"
                   v-bind:key="idx"
                   class="col-lg-3 sensor"
                 >
                   <h6 class="px-3 mt-1 mb-1">
-                    <span>{{ well.deposit_name }}</span>
+                    <span>{{ item.deposit_name }}</span>
                   </h6>  
-                  <h6 class="sensor-heading mb-1">{{ well.well_name }}</h6>
+                  <h6 class="sensor-heading mb-1">{{ item.well_name }}</h6>
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
                             <b>Давление</b>
                             <div class="value">
-                                <b>1</b>
+                                <b>{{ item }}</b>
                                 <b>атм.</b> 
                             </div>
                         </li>
                         <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
                             <b>Тепература</b>
                             <div class="value">
-                                <b>33</b>
+                                <b>{{ item.telemetry.temperature.value }}</b>
                                 <b>&#8451;</b> 
                             </div>
                         </li>
                         <li class="list-group-item list-group-item-dark d-flex justify-content-between flex-wrap">
                             <b>Уровень</b>
                             <div class="value">
-                                <b>8</b>
+                                <b>{{ item.telemetry.level.value }}</b>
                                 <b>М</b> 
                             </div>
                         </li>

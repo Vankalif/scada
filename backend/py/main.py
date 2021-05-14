@@ -32,7 +32,6 @@ async def shutdown():
     connection.close()
 
 
-# TODO: Заменить на представление последних значений по всем скважинам
 @app.get("/get_last_in/{table}/{well_id}")
 def get_last_in(table: str, well_id) -> Iterable:
     result = fetch_last_val(connection, table, well_id)
