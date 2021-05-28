@@ -14,12 +14,10 @@ DB_PASSWORD = 'KMKRadmin2021'
 #     tbl_name: - имя таблицы
 #     _well_id: - номер скважины
 
-def fetch_last_val(conn: any, tbl_name: str, _well_id: int) -> Iterable:
+def fetch_last_val(conn: any) -> Iterable:
     cursor = conn.cursor()
 
-    cursor.execute(sql.SQL(FETCH_LAST).format(
-        table=sql.Identifier(tbl_name)
-    ), [_well_id])
+    cursor.execute(sql.SQL(FETCH_LAST))
 
     result = cursor.fetchall()
     cursor.close()
