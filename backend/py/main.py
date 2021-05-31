@@ -32,7 +32,7 @@ async def shutdown():
     connection.close()
 
 
-@app.get("/get_last")
+@app.get("/current_values")
 def get_last_in() -> Iterable:
     result = fetch_last_val(connection)
     return result

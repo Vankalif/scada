@@ -1,6 +1,7 @@
 from queries import *
 from typing import Iterable
 from psycopg2 import sql
+from psycopg2 import extras
 
 # todo: Здесь нужно перенести в системные переменные
 DB_HOST = '172.16.0.39'
@@ -15,14 +16,29 @@ DB_PASSWORD = 'KMKRadmin2021'
 #     _well_id: - номер скважины
 
 def fetch_last_val(conn: any) -> Iterable:
+    j_obj = {}
     cursor = conn.cursor()
 
     cursor.execute(sql.SQL(FETCH_LAST))
 
     result = cursor.fetchall()
     cursor.close()
+    for idx, item in enumerate(result):
+        updates = dict([("well_id", item[0]),
+                        ("well_name", item[1]),
+                        ("deposit_id", item[2]),
+                        ("deposit_name", item[3]),
+                        ("temperature", item[4]),
+                        ("temperature_timestamp", item[5]),
+                        ("pressure", item[6]),
+                        ("pressure_timestamp", item[7]),
+                        ("level", item[8]),
+                        ("level_timestamp", item[9]),
+                        ])
+        j_obj.update({idx: updates})
+        del updates
     
-    return result
+    return j_obj
 
 
 # Функция для получения последнего значения из таблиц c параметрами.
@@ -46,7 +62,7 @@ def insert_in(conn: any, tbl_name: str, _well_id: int, _value: float) -> bool:
 # Получить список скважин
 def fetch_wells(conn: any) -> Iterable:
     j_obj = {}
-    cursor = conn.cursor()
+    cursor = conn.cursor(cursor_factory=extras.DictCursor)
 
     cursor.execute(sql.SQL(FETCH_WELLS))
 
