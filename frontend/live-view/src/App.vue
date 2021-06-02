@@ -29,21 +29,20 @@ export default {
       temperature_data: 0,
       waterline_data: 0,
       borehole_list: [],
+      data_poll: Object,
     };
   },
 
-  mounted: function () {
-    var self = this;
-    setInterval(function () {
-      fetch("http://localhost:8000/current_values")
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
-          self.borehole_list = data;
-          console.log(self);
-        });
+  created: function () {
+    this.data_poll = setInterval(async () => {
+      const f = await fetch("http://localhost:8000/current_values");
+      const data = await f.json();
+      this.borehole_list = data;
     }, 5000);
+  },
+
+  beforeDestroy: function () {
+    clearInterval(this.data_poll);
   },
 };
 </script>
