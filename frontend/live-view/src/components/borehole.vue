@@ -18,7 +18,7 @@
           >
           <b>атм.</b>
           <span class="mr-5">
-            {{ pressure_timestamp | moment("DD/MM, hh:mm") }}
+            {{ pressure_timestamp | moment("DD/MM, HH:mm") }}
           </span>
         </div>
       </li>
@@ -37,7 +37,7 @@
           >
           <b>&#8451;</b>
           <span class="mr-5">
-            {{ temperature_timestamp | moment("DD/MM, hh:mm") }}
+            {{ temperature_timestamp | moment("DD/MM, HH:mm") }}
           </span>
         </div>
       </li>
@@ -56,7 +56,7 @@
           >
           <b>М</b>
           <span class="mr-5">
-            {{ waterline_timestamp | moment("DD/MM, hh:mm") }}
+            {{ waterline_timestamp | moment("DD/MM, HH:mm") }}
           </span>
         </div>
       </li>

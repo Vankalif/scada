@@ -32,14 +32,18 @@ export default {
     };
   },
 
-  created: function () {
-    fetch("http://localhost:8000/current_values")
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        this.borehole_list = data;
-      });
+  mounted: function () {
+    var self = this;
+    setInterval(function () {
+      fetch("http://localhost:8000/current_values")
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((data) => {
+          self.borehole_list = data;
+          console.log(self);
+        });
+    }, 5000);
   },
 };
 </script>
