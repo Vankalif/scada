@@ -68,14 +68,38 @@
 export default {
   name: "BoreHole",
   props: {
-    name: String,
-    deposit_name: String,
-    pressure_value: Number,
-    pressure_timestamp: String,
-    temperature_value: Number,
-    temperature_timestamp: String,
-    waterline_value: Number,
-    waterline_timestamp: String,
+    name: {
+      type: String,
+      default: "N/A",
+    },
+    deposit_name: {
+      type: String,
+      default: "N/A",
+    },
+    pressure_value: {
+      type: Number,
+      default: 0,
+    },
+    pressure_timestamp: {
+      type: String,
+      default: "N/A",
+    },
+    temperature_value: {
+      type: Number,
+      default: 0,
+    },
+    temperature_timestamp: {
+      type: String,
+      default: "N/A",
+    },
+    waterline_value: {
+      type: Number,
+      default: 0,
+    },
+    waterline_timestamp: {
+      type: String,
+      default: "N/A",
+    },
   },
 };
 </script>

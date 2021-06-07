@@ -18,4 +18,4 @@ FETCH_LAST = 'with ' \
            'left join t_2 on t_2.well_id=pressure.well_id ' \
            'left join "level" on "level".well_id=w.id ' \
            'left join t_3 on t_3.well_id="level".well_id ' \
-           'where temperature."timestamp"=t_1.record_tstmp and pressure."timestamp"=t_2.record_tstmp and "level"."timestamp"=t_3.record_tstmp;'
+           'where temperature."timestamp"=t_1.record_tstmp and pressure."timestamp"=t_2.record_tstmp and "level"."timestamp"=t_3.record_tstmp order by w.id;'

@@ -25,9 +25,6 @@ export default {
   },
   data: function () {
     return {
-      pressure_data: 0,
-      temperature_data: 0,
-      waterline_data: 0,
       borehole_list: [],
       data_poll: Object,
     };
