@@ -18,6 +18,15 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/">Live-режим</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/charts">Графики</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/meteo">Метеоданные</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/tambukan">Тамбукан</router-link>
+          </li>
         </ul>
       </div>
     </nav>

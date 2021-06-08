@@ -1,24 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import WellView from "../views/WellView.vue";
+import HistoryCharts from "../views/HistoryCharts.vue";
+import Meteo from "../views/Meteo.vue";
+import Tambukan from "../views/Tambukan.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Well View",
     component: WellView,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ "../views/About.vue");
-    },
+    path: "/charts",
+    component: HistoryCharts,
+  },
+  {
+    path: "/meteo",
+    component: Meteo,
+  },
+  {
+    path: "/tambukan",
+    component: Tambukan,
   },
 ];
 
