@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import router from "./router";
 require("./assets/css/main.css");
 
 const moment = require("moment");
@@ -12,6 +13,8 @@ Vue.use(require("vue-moment"), {
 Vue.config.productionTip = false;
 
 new Vue({
+  router,
+
   render: function (h) {
     return h(App);
   },

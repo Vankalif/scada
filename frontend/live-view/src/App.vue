@@ -1,56 +1,26 @@
 <template>
-  <div id="app" class="row d-flex justify-content-between">
-    <div v-for="(item, idx) in borehole_list" v-bind:key="idx" class="col-lg-3">
-      <borehole
-        :name="item.well_name"
-        :deposit_name="item.deposit_name"
-        :pressure_value="item.pressure"
-        :pressure_timestamp="item.pressure_timestamp"
-        :temperature_value="item.temperature"
-        :temperature_timestamp="item.temperature_timestamp"
-        :waterline_value="item.level"
-        :waterline_timestamp="item.level_timestamp"
-      ></borehole>
-    </div>
+  <div id="app">
+    <header
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
+        >Кавминкурортресурсы</a
+      >
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Выход</a>
+        </li>
+      </ul>
+    </header>
+    <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/">Live-режим</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <router-view />
   </div>
 </template>
-
-<script>
-import Borehole from "./components/borehole.vue";
-
-export default {
-  name: "App",
-  components: {
-    Borehole,
-  },
-  data: function () {
-    return {
-      borehole_list: [],
-      data_poll: Object,
-    };
-  },
-
-  created: function () {
-    this.data_poll = setInterval(async () => {
-      const f = await fetch("http://localhost:8000/current_values");
-      const data = await f.json();
-      this.borehole_list = data;
-    }, 5000);
-  },
-
-  beforeDestroy: function () {
-    clearInterval(this.data_poll);
-  },
-};
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
