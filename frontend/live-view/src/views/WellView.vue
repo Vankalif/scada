@@ -4,6 +4,7 @@
       <h1>Наблюдение</h1>
     </div>
     <div class="row d-flex justify-content-between">
+      <preloader v-if="preloaderIsActive"></preloader>
       <div
         v-for="(item, idx) in borehole_list"
         v-bind:key="idx"
@@ -26,16 +27,19 @@
 
 <script>
 import Borehole from "@/components/borehole.vue";
+import Preloader from "@/components/preloader.vue";
 
 export default {
   name: "WellView",
   components: {
     Borehole,
+    Preloader,
   },
   data: function () {
     return {
       borehole_list: [],
       data_poll: Object,
+      preloaderIsActive: true,
     };
   },
 
@@ -43,6 +47,7 @@ export default {
     this.data_poll = setInterval(async () => {
       const f = await fetch("http://localhost:8000/current_values");
       const data = await f.json();
+      this.preloaderIsActive = false;
       this.borehole_list = data;
     }, 5000);
   },

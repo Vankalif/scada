@@ -1,5 +1,5 @@
 <template>
-  <div class="sensor">
+  <div class="sensor shadow">
     <h6 class="px-3 mt-1 mb-1 sensor-heading">{{ deposit_name }}</h6>
     <h6 class="sensor-heading mb-1">{{ name }}</h6>
     <ul class="list-group">
