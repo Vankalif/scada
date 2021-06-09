@@ -8,7 +8,7 @@
       <div
         v-for="(item, idx) in borehole_list"
         v-bind:key="idx"
-        class="col-lg-3"
+        class="col-lg-3 mb-3"
       >
         <borehole
           :name="item.well_name"

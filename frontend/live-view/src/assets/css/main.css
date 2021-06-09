@@ -84,6 +84,7 @@ header {
 }
 
 .sensor-heading {
+    background-color: #626A74;
     text-transform: uppercase;
     padding-left: 1rem;
     text-align: left;
