@@ -23,6 +23,9 @@
             <router-link class="nav-link" to="/meteo">Метеоданные</router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/reports">Отчёты</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/tambukan">Тамбукан</router-link>
           </li>
         </ul>
