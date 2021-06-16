@@ -1,7 +1,10 @@
+import psycopg2
 from queries import *
 from typing import Iterable
 from psycopg2 import sql
 from psycopg2 import extras
+from datetime import datetime
+
 
 # todo: Здесь нужно перенести в системные переменные
 DB_HOST = '172.16.0.39'
@@ -12,8 +15,6 @@ DB_PASSWORD = 'KMKRadmin2021'
 
 # Функция для получения последнего значения из таблиц c параметрами.
 #     conn: - подключение к базе данных
-#     tbl_name: - имя таблицы
-#     _well_id: - номер скважины
 
 def fetch_last_val(conn: any) -> Iterable:
     j_obj = {}
@@ -75,3 +76,23 @@ def fetch_wells(conn: any) -> Iterable:
         del updates
 
     return j_obj
+
+
+# Получить данные для построения графика
+def get_chart_data(conn: any, tbl_name: str, start_date: str, end_date: str, well_id: str) -> Iterable:
+    j_obj = {'vals': [], 'dates': []}
+    cursor = conn.cursor()
+
+    cursor.execute(sql.SQL(CHART_DATA).format(
+        table=sql.Identifier(tbl_name),
+    ), [str(datetime.fromisoformat(start_date)), str(datetime.fromisoformat(end_date)), int(well_id)])
+
+    result = cursor.fetchall()
+    cursor.close()
+
+    for item in result:
+        j_obj['vals'].append(item[0])
+        j_obj['dates'].append(item[1].strftime("%Y-%m-%d %H:%M:%S"))
+
+    return j_obj
+

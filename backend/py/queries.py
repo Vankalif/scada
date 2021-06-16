@@ -19,3 +19,5 @@ FETCH_LAST = 'with ' \
            'left join "level" on "level".well_id=w.id ' \
            'left join t_3 on t_3.well_id="level".well_id ' \
            'where temperature."timestamp"=t_1.record_tstmp and pressure."timestamp"=t_2.record_tstmp and "level"."timestamp"=t_3.record_tstmp order by w.id;'
+
+CHART_DATA = "select value, timestamp from {table} where {table}.timestamp >= %s and {table}.timestamp <= %s and well_id=%s order by timestamp asc;"

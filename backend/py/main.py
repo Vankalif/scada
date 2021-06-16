@@ -1,5 +1,6 @@
 import psycopg2
 from fastapi import FastAPI
+from datetime import datetime
 from starlette import status
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -32,6 +33,11 @@ async def shutdown():
     connection.close()
 
 
+@app.get("/")
+def hello() -> str:
+    return "Status - OK"
+
+
 @app.get("/current_values")
 def get_last_in() -> Iterable:
     result = fetch_last_val(connection)
@@ -43,9 +49,18 @@ def get_wells():
     result = fetch_wells(connection)
     return result
 
+#
+# # TODO: Добавить ответ
+# @app.post("/set_val_in", status_code=status.HTTP_201_CREATED)
+# def create_param(param: Param):
+#     insert_in(connection, param.table_name, param.well_id, param.value)
+#     return None
 
-# TODO: Добавить ответ
-@app.post("/set_val_in", status_code=status.HTTP_201_CREATED)
-def create_param(param: Param):
-    insert_in(connection, param.table_name, param.well_id, param.value)
-    return None
+
+@app.get("/get_chart/{table}")
+def chart_data(table: str, sdate: str, edate: str, w_id: str):
+    # sdate_ = datetime.fromisoformat(sdate)
+    # edate_ = datetime.fromisoformat(edate)
+    result = get_chart_data(connection, table, sdate, edate, w_id)
+    return result
+
