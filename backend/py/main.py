@@ -59,8 +59,6 @@ def get_wells():
 
 @app.get("/get_chart/{table}")
 def chart_data(table: str, sdate: str, edate: str, w_id: str):
-    # sdate_ = datetime.fromisoformat(sdate)
-    # edate_ = datetime.fromisoformat(edate)
     result = get_chart_data(connection, table, sdate, edate, w_id)
     return result
 
