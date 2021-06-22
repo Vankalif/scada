@@ -1,31 +1,13 @@
 <script>
-import { Line } from "vue-chartjs";
+import { Line, mixins } from "vue-chartjs";
+const { reactiveProp } = mixins;
 
 export default {
   extends: Line,
+  mixins: [reactiveProp],
   props: ["options"],
   mounted() {
-    this.renderChart(
-      {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#737A83",
-            data: [40, 39, 10, 40, 39, 80, 40],
-          },
-        ],
-      },
-      { responsive: true, maintainAspectRatio: false }
-    );
+    this.renderChart(this.chartData, this.options);
   },
 };
 </script>
