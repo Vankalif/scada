@@ -76,6 +76,8 @@
 <script>
 import LineChart from "@/components/linechart.vue";
 
+var chrtFontColor = "rgb(48, 76, 113)";
+
 export default {
   name: "HistoryCharts",
   components: {
@@ -101,12 +103,23 @@ export default {
         datasets: [
           {
             label: "Пример данных",
-            backgroundColor: "#737A83",
+            fill: false,
+            borderColor: "#304C71",
             data: [40, 39, 10, 40, 39, 80, 40],
           },
         ],
       },
-      options: { responsive: true, maintainAspectRatio: false },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          labels: { fontColor: chrtFontColor },
+        },
+        scales: {
+          yAxes: [{ ticks: { fontColor: chrtFontColor } }],
+          xAxes: [{ ticks: { fontColor: chrtFontColor } }],
+        },
+      },
     };
   },
 
@@ -122,9 +135,5 @@ export default {
       this.$refs["lineChart"].renderChart(this.chartData, this.options);
     },
   },
-
-  // mounted() {
-  //   this.fillData();
-  // },
 };
 </script>
