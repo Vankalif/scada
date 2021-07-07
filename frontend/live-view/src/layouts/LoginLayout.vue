@@ -31,7 +31,13 @@
               aria-describedby="password-addon"
             />
           </div>
-          <button type="submit" class="btn btn-primary">Войти</button>
+          <router-link
+            to="/live"
+            class="btn btn-primary"
+            tabindex="-1"
+            role="button"
+            >Войти</router-link
+          >
         </form>
       </div>
       <div class="footer">

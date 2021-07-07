@@ -6,7 +6,7 @@
       </div>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Выход</a>
+          <a class="nav-link" href="#" @click.prevent="logout">Выход</a>
         </li>
       </ul>
     </header>
@@ -36,6 +36,16 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
