@@ -69,6 +69,7 @@ export default {
 #loginBody {
   font-family: "Montserrat", sans-serif;
   color: black;
+  background-image: url(../assets/img/tile_background.png);
 }
 
 .org-name {

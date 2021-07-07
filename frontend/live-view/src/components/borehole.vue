@@ -105,3 +105,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.sensor-heading {
+  background-color: #626a74;
+  text-transform: uppercase;
+  padding-left: 1rem;
+  text-align: left;
+  color: #fff;
+}
+
+.value {
+  margin-right: 5px;
+}
+</style>
