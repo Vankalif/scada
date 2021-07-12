@@ -2,7 +2,7 @@
   <div>
     <header class="navbar sticky-top flex-md-nowrap p-0 shadow">
       <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-        Кавминкурортресурсы
+        {{ appConfig.orgName }}
       </div>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -44,6 +44,11 @@ export default {
       this.$router.push("/");
     },
   },
+  computed: {
+    appConfig() {
+      return this.$store.getters.appConfig;
+    },
+  },
 };
 </script>
 
@@ -51,8 +56,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap");
 
 .app-body {
-  color: #dad6d1;
-  background: #939fae;
+  background: #d1d9e4;
   font-family: "Source Code Pro", monospace;
   height: 100%;
   width: 100%;

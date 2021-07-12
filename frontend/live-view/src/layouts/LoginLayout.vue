@@ -2,31 +2,41 @@
   <div class="container-fluid" id="loginBody">
     <div class="sidebar shadow">
       <div class="d-flex justify-content-around org-name">
-        <h2 class="mt-5">Система "Обелиск"</h2>
+        <h2 class="mt-5">Система "{{ appConfig.appName }}"</h2>
       </div>
       <div class="form-layout">
         <router-view />
       </div>
       <div class="footer">
         <div class="d-flex justify-content-around text-muted">
-          АО "Кавминкурортресурсы"
+          {{ appConfig.orgName }}
         </div>
         <div class="d-flex justify-content-around text-muted">
-          Все права защищены 2021 г.
+          Все права защищены {{ appConfig.copyRightsYear }} г.
         </div>
         <div class="d-flex justify-content-around text-muted">
-          Разработчик: Туршиев Николай Манолисович
+          Разработчик: {{ appConfig.developerName }}
         </div>
         <div class="d-flex justify-content-around text-muted">
-          email: it@kavminkr.ru
+          email: {{ appConfig.orgEmail }}
         </div>
         <div class="d-flex justify-content-around text-muted">
-          Адрес: 357600 г. Ессентуки, Пятигорская 133.
+          Адрес: {{ appConfig.orgAdress }}
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    appConfig() {
+      return this.$store.getters.appConfig;
+    },
+  },
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");

@@ -124,7 +124,7 @@ export default {
   methods: {
     fillData: async function () {
       const f = await fetch(
-        `http://localhost:8000/get_chart/${this.data_table}?sdate=${this.s_date}&edate=${this.e_date}&w_id=${this.w_id}`
+        `http://172.16.0.91:8000/get_chart/${this.data_table}?sdate=${this.s_date}&edate=${this.e_date}&w_id=${this.w_id}`
       );
       const data = await f.json();
       this.chartData.datasets[0].label = this.data_table;

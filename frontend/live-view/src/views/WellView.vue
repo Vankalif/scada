@@ -45,7 +45,7 @@ export default {
 
   created: function () {
     this.data_poll = setInterval(async () => {
-      const f = await fetch("http://localhost:8000/current_values");
+      const f = await fetch("http://172.16.0.91:8000/current_values");
       const data = await f.json();
       this.preloaderIsActive = false;
       this.borehole_list = data;
