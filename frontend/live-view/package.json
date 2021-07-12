@@ -12,7 +12,8 @@
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
     "vue-moment": "^4.1.0",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "~4.5.0",

@@ -1,7 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import Vuelidate from "vuelidate";
 require("./assets/css/main.css");
+
+Vue.use(Vuelidate);
 
 const moment = require("moment");
 require("moment/locale/ru");
