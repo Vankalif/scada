@@ -96,3 +96,31 @@ def get_chart_data(conn: any, tbl_name: str, start_date: str, end_date: str, wel
 
     return j_obj
 
+
+def get_server_room_sensors_data(conn: any, start_date: str, end_date: str) -> Iterable:
+    j_obj = {'vals': [], 'dates': []}
+    cursor = conn.cursor()
+    one = str(datetime.fromisoformat(start_date))
+    two = str(datetime.fromisoformat(end_date))
+    print(one, two)
+    cursor.execute(sql.SQL(SERVER_ROOM_TEMP), [str(datetime.fromisoformat(start_date)),
+                                               str(datetime.fromisoformat(end_date))])
+
+    result = cursor.fetchall()
+    cursor.close()
+
+    for item in result:
+        j_obj['vals'].append(item[0])
+        j_obj['dates'].append(item[1].strftime("%Y-%m-%d %H:%M:%S"))
+
+    return j_obj
+
+
+def insert_in_server_room_temp(conn: any, _value: float) -> bool:
+    cursor = conn.cursor()
+
+    cursor.execute(sql.SQL(INSERT_IN_SERVER_ROOM_TEMP), [float(_value)])
+    conn.commit()
+    cursor.close()
+
+    return True

@@ -21,3 +21,10 @@ FETCH_LAST = 'with ' \
            'where temperature."timestamp"=t_1.record_tstmp and pressure."timestamp"=t_2.record_tstmp and "level"."timestamp"=t_3.record_tstmp order by w.id;'
 
 CHART_DATA = "select value, timestamp from {table} where {table}.timestamp >= %s and {table}.timestamp <= %s and well_id=%s order by timestamp asc;"
+
+SERVER_ROOM_TEMP = "select sensor_data, timestamp from server_room_temp where" \
+                   " server_room_temp.timestamp >= %s and" \
+                   " server_room_temp.timestamp <= %s order by timestamp asc;"
+
+
+INSERT_IN_SERVER_ROOM_TEMP = "insert into server_room_temp(sensor_data) VALUES (%s)"

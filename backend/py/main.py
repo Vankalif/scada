@@ -62,3 +62,14 @@ def chart_data(table: str, sdate: str, edate: str, w_id: str):
     result = get_chart_data(connection, table, sdate, edate, w_id)
     return result
 
+
+@app.get("/get_server_room_sensors_data")
+def server_room_sensors_data(sdate: str, edate: str):
+    result = get_server_room_sensors_data(connection, sdate, edate)
+    return result
+
+
+@app.post("/set_server_room_temp", status_code=status.HTTP_201_CREATED)
+def create_server_room_temp_item(value: float):
+    insert_in_server_room_temp(connection, value)
+    return None
