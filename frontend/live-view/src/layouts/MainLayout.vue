@@ -28,6 +28,11 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/tambukan">Тамбукан</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/server_room"
+              >Серверная</router-link
+            >
+          </li>
         </ul>
       </div>
     </nav>

@@ -7,6 +7,7 @@ import Tambukan from "@/views/Tambukan.vue";
 import Reports from "@/views/Reports.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
+import ServerRoom from "@/views/ServerRoom.vue";
 
 Vue.use(VueRouter);
 
@@ -56,6 +57,13 @@ const routes = [
   {
     path: "/reports",
     component: Reports,
+    meta: {
+      layout: "main",
+    },
+  },
+  {
+    path: "/server_room",
+    component: ServerRoom,
     meta: {
       layout: "main",
     },
