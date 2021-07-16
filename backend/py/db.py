@@ -3,7 +3,7 @@ from queries import *
 from typing import Iterable
 from psycopg2 import sql
 from psycopg2 import extras
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 
 # todo: Здесь нужно перенести в системные переменные
@@ -11,7 +11,7 @@ DB_HOST = '172.16.0.39'
 DB_NAME = 'remote_data'
 DB_USERNAME = 'monitoring'
 DB_PASSWORD = 'KMKRadmin2021'
-
+essentuki_tz = timezone(timedelta(hours=3))
 
 # Функция для получения последнего значения из таблиц c параметрами.
 #     conn: - подключение к базе данных
@@ -111,7 +111,7 @@ def get_server_room_sensors_data(conn: any, start_date: str, end_date: str) -> I
 
     for item in result:
         j_obj['vals'].append(item[0])
-        j_obj['dates'].append(item[1].strftime("%Y-%m-%d %H:%M:%S"))
+        j_obj['dates'].append(item[1].strftime("%H:%M"))
 
     return j_obj
 
