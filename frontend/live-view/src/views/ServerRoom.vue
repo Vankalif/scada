@@ -25,10 +25,8 @@ import LineChart from "@/components/linechart.vue";
 import moment from "moment";
 
 const chrtFontColor = "rgb(48, 76, 113)";
-const _builded_s_date = moment()
-  .subtract(1, "days")
-  .format("YYYY-MM-DD HH:mm:ss");
-const _builded_e_date = moment().format("YYYY-MM-DD HH:mm:ss");
+const s_date = moment().subtract(1, "days").format("YYYY-MM-DD HH:mm:ss");
+const e_date = moment().format("YYYY-MM-DD HH:mm:ss");
 
 export default {
   name: "ServerRoom",
@@ -38,8 +36,8 @@ export default {
 
   data() {
     return {
-      s_date: _builded_s_date,
-      e_date: _builded_e_date,
+      s_date,
+      e_date,
       t_curr: 0,
       t_min: 0,
       t_max: 0,
