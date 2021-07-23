@@ -28,3 +28,6 @@ SERVER_ROOM_TEMP = "select sensor_data, timestamp from server_room_temp where" \
 
 
 INSERT_IN_SERVER_ROOM_TEMP = "insert into server_room_temp(sensor_data) VALUES (%s)"
+
+
+INSERT_IN_USERS = "INSERT INTO users(first_name, surname, patronymic, login, password_hash) VALUES (%s, %s, %s, %s, %s)"

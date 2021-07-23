@@ -1,11 +1,10 @@
 import psycopg2
-from fastapi import FastAPI
-from datetime import datetime
+from fastapi import FastAPI, Response
 from starlette import status
 from fastapi.middleware.cors import CORSMiddleware
+from schemas import User
 
 from db import *
-from schemas import Param
 
 connection = psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USERNAME, password=DB_PASSWORD)
 app = FastAPI()
@@ -73,3 +72,17 @@ def server_room_sensors_data(sdate: str, edate: str):
 def create_server_room_temp_item(value: float):
     insert_in_server_room_temp(connection, value)
     return None
+
+
+@app.post("/login")
+def login():
+    pass
+
+
+@app.post("/register", status_code=status.HTTP_201_CREATED)
+def register(usr: User, response: Response):
+    result = create_user(connection, usr)
+    if not result:
+        response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+        return {"status_code": 500}
+    return {'status_code': 201}

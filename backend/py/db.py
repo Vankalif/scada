@@ -1,9 +1,13 @@
+import hashlib
+
 import psycopg2
+
 from queries import *
 from typing import Iterable
 from psycopg2 import sql
 from psycopg2 import extras
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
+from schemas import User
 
 
 # todo: Здесь нужно перенести в системные переменные
@@ -11,11 +15,10 @@ DB_HOST = '172.16.0.39'
 DB_NAME = 'remote_data'
 DB_USERNAME = 'monitoring'
 DB_PASSWORD = 'KMKRadmin2021'
-essentuki_tz = timezone(timedelta(hours=3))
+
 
 # Функция для получения последнего значения из таблиц c параметрами.
 #     conn: - подключение к базе данных
-
 def fetch_last_val(conn: any) -> Iterable:
     j_obj = {}
     cursor = conn.cursor()
@@ -124,3 +127,20 @@ def insert_in_server_room_temp(conn: any, _value: float) -> bool:
     cursor.close()
 
     return True
+
+
+def create_user(conn: ..., user: User) -> bool:
+    cursor = conn.cursor()
+    user.password = hashlib.sha256(user.password.encode()).hexdigest()
+    try:
+        cursor.execute(sql.SQL(INSERT_IN_USERS), [user.name,
+                                                  user.surname,
+                                                  user.patronymic,
+                                                  user.login,
+                                                  user.password])
+        conn.commit()
+        cursor.close()
+        return True
+    except psycopg2.Error:
+        cursor.close()
+        return False
