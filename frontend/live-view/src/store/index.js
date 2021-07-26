@@ -13,6 +13,7 @@ export default new Vuex.Store({
       developerName: "Туршиев Николай Манолисович",
       orgAdress: "357600 г. Ессентуки, Пятигорская 133.",
       apiAdress: "172.16.0.91",
+      apiPort: "8000",
     },
     status: "",
     token: localStorage.getItem("token") || "",
@@ -23,6 +24,9 @@ export default new Vuex.Store({
   getters: {
     appConfig(state) {
       return state.appConfig;
+    },
+    appApiAdress(state) {
+      return state.appConfig.apiAdress + ":" + state.appConfig.apiPort;
     },
   },
 });

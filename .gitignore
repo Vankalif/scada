@@ -3,4 +3,4 @@ venv
 .idea
 __pycache__
 backend/sql
-frontend_2
+.gitignore

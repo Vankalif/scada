@@ -1,44 +1,47 @@
 <template>
   <div>
     <form class="p-5" @submit.prevent="submitHandler">
-      <label for="email" class="form-label">Адрес электронной почты:</label>
-      <div v-if="$v.email.$invalid" class="invalid-feedback-text">
-        Введите ваш Email.
+      <label for="email" class="form-label">Логин:</label>
+      <div v-if="$v.user.login.$invalid" class="invalid-feedback-text">
+        Введите ваш Логин.
       </div>
       <div class="input-group mb-1">
-        <span class="input-group-text" id="email-addon"
-          ><i class="bi bi-envelope-fill"></i
+        <span class="input-group-text" id="login-addon"
+          ><i class="bi bi-person-circle"></i
         ></span>
         <input
-          v-model.trim="$v.email.$model"
+          v-model.trim="$v.user.login.$model"
           class="form-control"
           v-bind:class="[
-            { valid: !$v.email.$invalid, invalid: $v.email.$invalid },
+            { valid: !$v.user.login.$invalid, invalid: $v.user.login.$invalid },
           ]"
-          id="email"
-          aria-describedby="email-addon"
+          id="login"
+          aria-describedby="login-addon"
         />
       </div>
-      <label for="surename" class="form-label">Фамилия:</label>
-      <div v-if="$v.surename.$invalid" class="invalid-feedback-text">
+      <label for="surname" class="form-label">Фамилия:</label>
+      <div v-if="$v.user.surname.$invalid" class="invalid-feedback-text">
         Введите ваш Фамилию.
       </div>
       <div class="input-group mb-1">
-        <span class="input-group-text" id="surename-addon"
+        <span class="input-group-text" id="surname-addon"
           ><i class="bi bi-person-fill"></i
         ></span>
         <input
-          v-model.trim="$v.surename.$model"
+          v-model.trim="$v.user.surname.$model"
           class="form-control"
           v-bind:class="[
-            { valid: !$v.surename.$invalid, invalid: $v.surename.$invalid },
+            {
+              valid: !$v.user.surname.$invalid,
+              invalid: $v.user.surname.$invalid,
+            },
           ]"
-          id="surename"
-          aria-describedby="surename-addon"
+          id="surname"
+          aria-describedby="surname-addon"
         />
       </div>
       <label for="name" class="form-label">Имя:</label>
-      <div v-if="$v.name.$invalid" class="invalid-feedback-text">
+      <div v-if="$v.user.name.$invalid" class="invalid-feedback-text">
         Введите ваш Имя.
       </div>
       <div class="input-group mb-1">
@@ -46,17 +49,17 @@
           ><i class="bi bi-person-fill"></i
         ></span>
         <input
-          v-model.trim="$v.name.$model"
+          v-model.trim="$v.user.name.$model"
           class="form-control"
           v-bind:class="[
-            { valid: !$v.name.$invalid, invalid: $v.name.$invalid },
+            { valid: !$v.user.name.$invalid, invalid: $v.user.name.$invalid },
           ]"
           id="name"
           aria-describedby="name-addon"
         />
       </div>
       <label for="patronymic" class="form-label">Отчество:</label>
-      <div v-if="$v.patronymic.$invalid" class="invalid-feedback-text">
+      <div v-if="$v.user.patronymic.$invalid" class="invalid-feedback-text">
         Введите ваше Отчество.
       </div>
       <div class="input-group mb-1">
@@ -64,40 +67,46 @@
           ><i class="bi bi-person-fill"></i
         ></span>
         <input
-          v-model.trim="$v.patronymic.$model"
+          v-model.trim="$v.user.patronymic.$model"
           class="form-control"
           id="patronymic"
           v-bind:class="[
-            { valid: !$v.patronymic.$invalid, invalid: $v.patronymic.$invalid },
+            {
+              valid: !$v.user.patronymic.$invalid,
+              invalid: $v.user.patronymic.$invalid,
+            },
           ]"
           aria-describedby="patronymic-addon"
         />
       </div>
       <label for="password" class="form-label">Пароль:</label>
-      <div v-if="!$v.password.required" class="invalid-feedback-text">
+      <div v-if="!$v.user.password.required" class="invalid-feedback-text">
         Введите ваш Пароль.
       </div>
-      <div v-if="!$v.password.minLength" class="invalid-feedback-text">
+      <div v-if="!$v.user.password.minLength" class="invalid-feedback-text">
         Пароль должен быть длинной не менее
-        {{ $v.password.$params.minLength.min }} символов.
+        {{ $v.user.password.$params.minLength.min }} символов.
       </div>
       <div class="input-group mb-1">
         <span class="input-group-text" id="password-addon"
           ><i class="bi bi-shield-lock-fill"></i
         ></span>
         <input
-          v-model.lazy.trim="$v.password.$model"
+          v-model.lazy.trim="$v.user.password.$model"
           type="password"
           class="form-control"
           id="password"
           v-bind:class="[
-            { valid: !$v.password.$invalid, invalid: $v.password.$invalid },
+            {
+              valid: !$v.user.password.$invalid,
+              invalid: $v.user.password.$invalid,
+            },
           ]"
           aria-describedby="password-addon"
         />
       </div>
       <label for="password_check" class="form-label">Повторите пароль:</label>
-      <div v-if="$v.password_check.$invalid" class="invalid-feedback-text">
+      <div v-if="$v.user.password_check.$invalid" class="invalid-feedback-text">
         Пароли не совападают.
       </div>
       <div class="input-group mb-3">
@@ -105,16 +114,18 @@
           ><i class="bi bi-shield-lock-fill"></i
         ></span>
         <input
-          v-model.trim="$v.password_check.$model"
+          v-model.trim="$v.user.password_check.$model"
           type="password"
           class="form-control"
           id="password_check"
           v-bind:class="[
             {
               valid:
-                !$v.password_check.$invalid && $v.password_check.sameAsPassword,
+                !$v.user.password_check.$invalid &&
+                $v.user.password_check.sameAsPassword,
               invalid:
-                $v.password_check.$invalid && !$v.password_check.sameAsPassword,
+                $v.user.password_check.$invalid &&
+                !$v.user.password_check.sameAsPassword,
             },
           ]"
           aria-describedby="password_check-addon"
@@ -131,35 +142,53 @@
 </template>
 
 <script>
-import { email, required, minLength, sameAs } from "vuelidate/lib/validators";
+import { required, minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "Register",
   data: function () {
     return {
-      email: "",
-      name: "",
-      surename: "",
-      patronymic: "",
-      password: "",
-      password_check: "",
+      user: {
+        login: "",
+        name: "",
+        surname: "",
+        patronymic: "",
+        password: "",
+        password_check: "",
+      },
     };
   },
   validations: {
-    email: { email, required },
-    name: { required },
-    surename: { required },
-    patronymic: { required },
-    password: { required, minLength: minLength(8) },
-    password_check: { sameAsPassword: sameAs("password") },
+    user: {
+      login: { required },
+      name: { required },
+      surname: { required },
+      patronymic: { required },
+      password: { required, minLength: minLength(8) },
+      password_check: { sameAsPassword: sameAs("password") },
+    },
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
       }
-      this.$router.push("/");
+
+      console.log(JSON.stringify(this.user));
+
+      let response = await fetch(
+        `http://${this.$store.getters.appApiAdress}/register`,
+        {
+          method: "POST",
+          body: JSON.stringify(this.user),
+        }
+      );
+
+      let result = await response.json();
+      if (result.status_code === 201) {
+        this.$router.push("/");
+      }
     },
   },
 };

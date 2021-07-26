@@ -85,4 +85,4 @@ def register(usr: User, response: Response):
     if not result:
         response.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         return {"status_code": 500}
-    return {'status_code': 201}
+    return {"status_code": 201}
